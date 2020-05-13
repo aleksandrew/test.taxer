@@ -1,8 +1,13 @@
 {
-  "parser": "babel-eslint",
-  "plugins": ["react", "jsx-a11y", "import"],
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "jsx-a11y", "import", "prettier", "@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "airbnb-typescript", "react-app", "prettier"],
   "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    },
      "react": {
          "version": "^16.8.6"
      }
@@ -14,11 +19,7 @@
     "es6": true
   },
   "parserOptions": {
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true,
-      "experimentalObjectRestSpread": true
-    }
+    "project": "./tsconfig.json"
   },
   "globals": {
     "window": true,
@@ -104,7 +105,7 @@
     "no-new-func": ["error"],
     "import/named": ["error"],
     "no-unreachable": ["error"],
-    "react/prop-types":["error"],
+    "react/prop-types":["off"],
     "no-throw-literal": ["error"],
     "react/no-unused-state": ["error"],
     "react/no-unused-prop-types": ["error"],
@@ -179,6 +180,25 @@
         "ArrowFunctionExpression": true,
         "FunctionExpression": true
       }
-    }]
+    }],
+    "react/jsx-props-no-spreading": ["off"],
+    "import/prefer-default-export": ["off"],
+    "react/jsx-boolean-value": ["off"],
+    "react/no-unescaped-entities": ["off"],
+    "react/jsx-one-expression-per-line": ["off"],
+    "react/jsx-wrap-multilines": ["off"],
+    "react/destructuring-assignment": ["off"],
+    "@typescript-eslint/no-unused-vars": ["warn", {"vars": "all", "args": "none"}],
+    "@typescript-eslint/no-explicit-any": ["error", {"ignoreRestArgs": true}],
+    "react/jsx-key": ["error"],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": [
+          "**/*.test.js",
+          "**/*.test.jsx",
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "src/tests/**/*"
+        ]
+      }
+    ]
   }
 }
