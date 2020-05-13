@@ -1,2 +1,5 @@
-*/test/*.js
-src/registerServiceWorker.js
+// .eslintignore
+build/*
+public/*
+src/react-app-env.d.ts
+src/serviceWorker.ts
