@@ -2,6 +2,7 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { getData } from '../services/api';
 import { TYPES } from '../constants/types';
+import { DATA } from '../reducers/action';
 
 // local dependencies
 // import { authAPI } from '../services/api';
@@ -9,15 +10,15 @@ import { TYPES } from '../constants/types';
 
 function* initializeApp() {
     try {
-        const payload = yield call(getData);
+        const data = yield call(getData);
 
-        // yield put({ type: APP.INITIALIZED_SUCCESS });
+        yield put(DATA(data));
         //
         // if (payload) {
         //     yield put({ type: AUTH.SET_USER_DATA, payload: { ...payload, isAuth: true } });
         // }
     } catch (e) {
-        console.log(e);
+        console.warn(e);
     }
 }
 

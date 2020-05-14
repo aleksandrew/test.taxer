@@ -1,11 +1,13 @@
-import axios from 'axios';
+import axios, { AxiosInstance, AxiosPromise } from 'axios';
 import { BaseApiResponse } from '../constants/types';
+// import { Promise } from 'q';
 
 const instance = axios.create({
-    baseURL:
-        'https://api.unsplash.com/photos/?client_id=cf49c08b444ff4cb9e4d126b7e9f7513ba1ee58de7906e4360afc1a33d1bf4c0',
+    baseURL: 'https://pixabay.com/api',
 });
 
-export function getData() {
-    return instance({ method: 'get' }).then((response) => console.log(response));
-}
+export const getData = () => {
+    return instance
+        .get<BaseApiResponse>('/?key=16536208-9fc62eea32cdbf6ba7c4bd885')
+        .then((response) => response.data.hits);
+};
