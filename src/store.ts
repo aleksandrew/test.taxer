@@ -5,14 +5,15 @@ import { compose, applyMiddleware, combineReducers, createStore } from 'redux';
 
 // local dependencies
 import sagasRoot from './sagas';
-// import appReducer from './app-reducer';
+import app from './reducers/app';
+// import app from './app-reducer';
 // import authReducer from './auth-reducer';
 // import usersReducer from './users-reducer';
 // import profileReducer from './profile-reducer';
 // import messageReducer from './message-reducer';
 
 const rootReducer = combineReducers({
-    // app: appReducer,
+    app: app,
     form: formReducer,
 });
 
