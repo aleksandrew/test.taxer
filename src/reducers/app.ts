@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 
 // local dependencies
 // import { APP } from '../constans/types';
-import { DataPayload, Hits, TYPES } from '../constants/types';
+import { DataPayload, TYPES } from '../constants/types';
 
 const initialState: DataPayload = {
     data: [],
@@ -17,11 +17,9 @@ const app: Reducer<DataPayload> = (state = initialState, action: any) => {
     const { type, ...options } = action;
 
     switch (type) {
-        case TYPES.DATA:
-            return { ...state, ...options.payload };
+        case TYPES.DATA: return { ...state, ...options.payload };
 
-        default:
-            return state;
+        default: return state;
     }
 };
 

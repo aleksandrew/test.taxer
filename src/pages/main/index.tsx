@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
-import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { Hits, TYPES } from './constants/types';
-import { selector } from './reducers/app';
+import { Hits, TYPES } from '../../constants/types';
+import { selector } from '../../reducers/app';
 import { Container, GridList, GridListTile, GridListTileBar, IconButton, ListSubheader } from '@material-ui/core';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 
@@ -25,18 +24,10 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-function App() {
+export default function Main() {
     const classes = useStyles();
 
     const { data } = useSelector(selector);
-    const dispatch = useDispatch();
-    const toggleFilterAction = useCallback(() => dispatch({ type: TYPES.INITIALIZED_APP }), [dispatch]);
-
-    useEffect(() => {
-        if (data.length === 0) {
-            toggleFilterAction();
-        }
-    }, [data]);
 
     return (
         <Container>
@@ -62,5 +53,3 @@ function App() {
         </Container>
     );
 }
-
-export default App;
