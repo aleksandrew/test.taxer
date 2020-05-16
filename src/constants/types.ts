@@ -28,13 +28,13 @@ export interface Hits {
 }
 
 export interface BaseApiResponse {
-    readonly hits: Hits[];
+    readonly hits: Array<Hits>;
     readonly total: number;
     readonly totalHits: number;
 }
 
 export interface DataPayload {
-    [key: string]: Hits[];
+    [key: string]: Array<Hits>;
 }
 
 export enum TYPES {
