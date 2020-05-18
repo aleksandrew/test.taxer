@@ -7,6 +7,7 @@ import { DataPayload, TYPES } from '../constants/types';
 
 const initialState: DataPayload = {
     data: [],
+    currentPage: 1,
 };
 
 // export type InitialStateType = typeof initialState;

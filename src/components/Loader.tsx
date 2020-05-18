@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -6,18 +6,19 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
-            '& > * + *': {
-                marginLeft: theme.spacing(2),
-            },
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100vw',
+            height: '100vh'
         },
     }),
 );
 
 export default function Loader() {
     const classes = useStyles();
-    const [progress, setProgress] = React.useState(0);
+    const [progress, setProgress] = useState(0);
 
-    React.useEffect(() => {
+    useEffect(() => {
         function tick() {
             // reset when reaching 100%
             setProgress((oldProgress) => (oldProgress >= 100 ? 0 : oldProgress + 1));
@@ -31,8 +32,7 @@ export default function Loader() {
 
     return (
         <div className={classes.root}>
-            <CircularProgress variant="determinate" value={progress} />
-            <CircularProgress variant="determinate" value={progress} color="secondary" />
+            <CircularProgress size="20vw" variant="determinate" value={progress} color="secondary" />
         </div>
     );
 }

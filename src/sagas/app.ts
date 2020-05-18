@@ -1,5 +1,5 @@
 // outsource dependencies
-import { takeEvery, put, call } from 'redux-saga/effects';
+import { takeEvery, put, call, select } from 'redux-saga/effects';
 import { getData } from '../services/api';
 import { TYPES } from '../constants/types';
 import { DATA } from '../reducers/action';
@@ -8,20 +8,20 @@ import { DATA } from '../reducers/action';
 // import { authAPI } from '../services/api';
 // import { APP, AUTH } from '../constans/types';
 
-function* initializeApp() {
-    try {
-        const data = yield call(getData);
+function* getImage({ ...payload }) {
+    const { page } = payload;
+    const currentData = yield select(state => state.app.data);
 
-        yield put(DATA(data));
-        //
-        // if (payload) {
-        //     yield put({ type: AUTH.SET_USER_DATA, payload: { ...payload, isAuth: true } });
-        // }
+    try {
+        const uploadedData = yield call(getData, page);
+        const data = currentData.length === 0 ? [...uploadedData] : [...currentData, ...uploadedData];
+
+        yield put(DATA(data, page));
     } catch (e) {
         console.warn(e);
     }
 }
 
 export default function* () {
-    yield takeEvery(TYPES.INITIALIZED_APP, initializeApp);
+    yield takeEvery(TYPES.GET_DATA, getImage);
 }

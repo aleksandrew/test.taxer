@@ -34,10 +34,11 @@ export interface BaseApiResponse {
 }
 
 export interface DataPayload {
-    [key: string]: Array<Hits>;
+    data: Array<Hits>
+    currentPage: number
 }
 
 export enum TYPES {
     DATA = '@prefix/DATA',
-    INITIALIZED_APP = 'INITIALIZED_APP',
+    GET_DATA = 'GET_DATA',
 }

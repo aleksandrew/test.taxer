@@ -10,43 +10,27 @@ import { selector } from '../reducers/app';
 import { TYPES } from '../constants/types';
 import Loader from '../components/Loader';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-            overflow: 'hidden',
-            backgroundColor: theme.palette.background.paper,
-        },
-        gridList: {
-            width: '100%',
-            height: '100%',
-        },
-        icon: {
-            color: 'rgba(255, 255, 255, 0.54)',
-        },
-    })
-);
-
 export default function App() {
 
     const { data } = useSelector(selector);
     const dispatch = useDispatch();
-    const toggleFilterAction = useCallback(() => dispatch({ type: TYPES.INITIALIZED_APP }), [dispatch]);
+    const toggleFilterAction = useCallback(() => dispatch({ type: TYPES.GET_DATA }), [dispatch]);
 
     useEffect((): any => {
         if (data.length === 0) {
             toggleFilterAction();
-
-            return Loader;
         }
     }, [data]);
 
     return (
-        <Switch>
-            <Route path={ROUTES.MAIN} component={Main} />
-            <Redirect exact from='/' to={ROUTES.MAIN} />
-        </Switch>
+        <>
+            {data.length === 0
+                ? <Loader/>
+                : <Switch>
+                    <Route path={ROUTES.MAIN} component={Main}/>
+                    <Redirect exact from='/' to={ROUTES.MAIN}/>
+                </Switch>
+            }
+        </>
     );
 }
