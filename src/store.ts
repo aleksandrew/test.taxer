@@ -6,20 +6,22 @@ import { compose, applyMiddleware, combineReducers, createStore } from 'redux';
 // local dependencies
 import sagasRoot from './sagas';
 import app from './reducers/app';
-// import app from './app-reducer';
-// import authReducer from './auth-reducer';
-// import usersReducer from './users-reducer';
-// import profileReducer from './profile-reducer';
-// import messageReducer from './message-reducer';
 
 const rootReducer = combineReducers({
     app: app,
     form: formReducer,
 });
 
+type RootReducerType = typeof rootReducer;
+
+export type StateType = ReturnType<RootReducerType>;
+
 const sagaMiddleware: any = createSagaMiddleware();
 
-const store = createStore(rootReducer, compose(applyMiddleware(sagaMiddleware)));
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 
 sagaMiddleware.run(sagasRoot);
 

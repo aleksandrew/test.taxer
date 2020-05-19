@@ -2,7 +2,7 @@
 import { Reducer } from 'redux';
 
 // local dependencies
-// import { APP } from '../constans/types';
+import { StateType } from '../store';
 import { DataPayload, TYPES } from '../constants/types';
 
 const initialState: DataPayload = {
@@ -10,17 +10,17 @@ const initialState: DataPayload = {
     currentPage: 1,
 };
 
-// export type InitialStateType = typeof initialState;
+export const selector = (state: StateType) => state.app;
 
-export const selector = (state: any) => state.app;
-
-const app: Reducer<DataPayload> = (state = initialState, action: any) => {
+const app: Reducer<DataPayload> = (state = initialState, action) => {
     const { type, ...options } = action;
 
     switch (type) {
-        case TYPES.DATA: return { ...state, ...options.payload };
+        case TYPES.DATA:
+            return { ...state, ...options.payload };
 
-        default: return state;
+        default:
+            return state;
     }
 };
 

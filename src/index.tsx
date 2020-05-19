@@ -1,21 +1,20 @@
+// outsource dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './pages';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
+
+// local dependencies
+import App from './pages';
 import store from './store';
-
-
-
+import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <BrowserRouter>
-    <Provider store={store}>
-        <App />
-    </Provider>
-    </BrowserRouter>,
+    <HashRouter basename={process.env.PUBLIC_URL}>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </HashRouter>,
     document.getElementById('root')
 );
 
