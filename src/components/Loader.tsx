@@ -1,6 +1,9 @@
-import React, {useState, useEffect} from 'react';
+// outsource dependencies
+import React, { useState, useEffect } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+// local dependencies
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -9,9 +12,9 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'center',
             alignItems: 'center',
             width: '100vw',
-            height: '100vh'
+            height: '100vh',
         },
-    }),
+    })
 );
 
 export default function Loader() {

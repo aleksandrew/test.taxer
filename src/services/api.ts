@@ -1,4 +1,7 @@
-import axios, { AxiosInstance, AxiosPromise } from 'axios';
+// outsource dependencies
+import axios from 'axios';
+
+// local dependencies
 import { BaseApiResponse } from '../constants/types';
 
 const instance = axios.create({
@@ -6,6 +9,7 @@ const instance = axios.create({
 });
 
 export const getData = (page: number = 1) => {
-    console.log(page)
-    return instance({ method: 'get', url: `&page=${page}`}).then((response) => response.data.hits) as Promise<BaseApiResponse>;
+    return instance({ method: 'get', url: `&page=${page}` }).then((response) => response.data.hits) as Promise<
+        BaseApiResponse
+    >;
 };
